@@ -1,0 +1,35 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: todos-app
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  TodosFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: todos/
+      Handler: app.lambdaHandler
+      Runtime: nodejs12.x
+      Events:
+        GetTodosEvent:
+          Type: Api
+          Properties:
+            Path: /todos
+            Method: get
+        GetTodoEvent:
+          Type: Api
+          Properties:
+            Path: /todos/{id}
+            Method: get
+Outputs:
+  TodosAppApi:
+    Description: "API Gateway endpoint URL for Prod stage for Todos function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/todos/"
+  TodosFunction:
+    Description: "Todos Lambda Function ARN"
+    Value: !GetAtt TodosFunction.Arn
+  TodosFunctionIamRole:
+    Description: "Implicit IAM Role created for Todos function"
+    Value: !GetAtt TodosFunction.Arn

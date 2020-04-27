@@ -1,0 +1,14 @@
+{
+  "name": "todos",
+  "version": "1.0.0",
+  "description": "todos sample for NodeJS",
+  "main": "app.js",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "lambda-api": "^0.10.5"
+  },
+  "scripts": {
+    "test": "mocha tests/unit/"
+  }
+}
