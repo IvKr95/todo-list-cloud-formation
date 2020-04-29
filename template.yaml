@@ -9,6 +9,7 @@ Resources:
   TodosFunction:
     Type: AWS::Serverless::Function
     Properties:
+      FunctionName: TodosLambdaFunction
       CodeUri: todos/
       Handler: app.lambdaHandler
       Runtime: nodejs12.x
@@ -23,6 +24,20 @@ Resources:
           Properties:
             Path: /todos/{id}
             Method: get
+      Layers:
+        - !Ref LambdaLayer
+
+  LambdaLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: MyLambdaLayer
+      Description: Lambda layer with node_modules
+      ContentUri: lambda-layers/lambda-layer.zip
+      CompatibleRuntimes: 
+        - nodejs12.x
+      LicenseInfo: MIT
+      RetentionPolicy: Retain
+
 Outputs:
   TodosAppApi:
     Description: "API Gateway endpoint URL for Prod stage for Todos function"

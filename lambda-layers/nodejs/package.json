@@ -1,0 +1,14 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "Lambda Layer Dependencies",
+  "dependencies": {
+    "lambda-api": "^0.10.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Ivan Kravtsov",
+  "license": "ISC"
+}
